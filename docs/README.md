@@ -3,9 +3,9 @@
 ---
 
 <div align="center">
-  <img src="/assets/kernelsu_next.png" width="96" alt="KernelSU Next Logo">
+  <img src="/assets/kernelsu_next.png" width="96" alt="GoreSU Logo">
 
-  <h2>KernelSU Next</h2>
+  <h2>GoreSU</h2>
   <p><strong>A kernel-based root solution for Android devices.</strong></p>
 
   <p>
@@ -37,13 +37,13 @@
 
 ## ✅ Compatibility
 
-KernelSU Next supports Android kernels from **4.4 up to 6.6**.
+GoreSU supports Android kernels from **4.4 up to 6.6**.
 
 | Kernel version       | Support notes                                                           |
 |----------------------|-------------------------------------------------------------------------|
 | 5.10+ (GKI 2.0)      | Supports pre-built images and LKM/KMI                                   |
-| 4.19 – 5.4 (GKI 1.0) | Requires KernelSU driver built-in                                       |
-| < 4.14 (EOL)         | Requires KernelSU driver (3.18+ is experimental and may need backports) |
+| 4.19 – 5.4 (GKI 1.0) | Requires GoreSU driver built-in                                       |
+| < 4.14 (EOL)         | Requires GoreSU driver (3.18+ is experimental and may need backports) |
 
 **Supported architectures:** `arm64-v8a`, `armeabi-v7a` and `x86_64`
 
@@ -88,5 +88,5 @@ If you'd like to support the project:
 - [Magisk](https://github.com/topjohnwu/Magisk) – Core root implementation
 - [Genuine](https://github.com/brevent/genuine/) – APK v2 signature validation
 - [Diamorphine](https://github.com/m0nad/Diamorphine) – Rootkit techniques
-- [KernelSU](https://github.com/tiann/KernelSU) – The original base that made KernelSU Next possible
+- [KernelSU](https://github.com/tiann/KernelSU) – The original base that made GoreSU possible
 - [Magic Mount Port](https://github.com/5ec1cff/KernelSU/blob/main/userspace/ksud/src/magic_mount.rs) – For Magic Mount support

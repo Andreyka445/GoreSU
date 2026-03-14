@@ -639,9 +639,11 @@ private fun TopBar(
                     }
                 }
             ) {
+                // Removed icon that might contain "KernelSU" text and replaced with a generic logo if app_name is GoreSU
                 Icon(
-                    painter = painterResource(R.drawable.ic_ksu_next),
+                    imageVector = Icons.Filled.VerifiedUser,
                     contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary,
                     modifier = Modifier
                         .padding(end = 8.dp)
                         .graphicsLayer {
@@ -1139,7 +1141,7 @@ fun handleDynamicShortcuts(context: Context, moduleConfigs: List <Pair<ModuleVie
             .setIntent(
                 Intent(context, WebUIActivity::class.java).apply {
                     action = Intent.ACTION_VIEW
-                    data = "kernelsu://webui/${module.id}".toUri()
+                    data = "goresu://webui/${module.id}".toUri()
                     putExtra("id", module.id)
                     putExtra("name", module.name)
                 }

@@ -21,9 +21,9 @@ import okhttp3.OkHttpClient
 import java.io.File
 import java.util.*
 
-lateinit var ksuApp: KernelSUApplication
+lateinit var ksuApp: GoreSUApplication
 
-class KernelSUApplication : Application(), ViewModelStoreOwner {
+class GoreSUApplication : Application(), ViewModelStoreOwner {
 
     lateinit var okhttpClient: OkHttpClient
     private val appViewModelStore by lazy { ViewModelStore() }
@@ -58,7 +58,7 @@ class KernelSUApplication : Application(), ViewModelStoreOwner {
                 .addInterceptor { block ->
                     block.proceed(
                         block.request().newBuilder()
-                            .header("User-Agent", "KernelSU-Next/${BuildConfig.VERSION_CODE}")
+                            .header("User-Agent", "GoreSU/${BuildConfig.VERSION_CODE}")
                             .header("Accept-Language", Locale.getDefault().toLanguageTag()).build()
                     )
                 }.build()

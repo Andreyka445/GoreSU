@@ -9,7 +9,7 @@
 
 #include "ksu.h"
 
-#define LOG_TAG "KernelSU-Next"
+#define LOG_TAG "GoreSU"
 #ifdef NDEBUG
 #define LOGD(...) (void)0
 #else
