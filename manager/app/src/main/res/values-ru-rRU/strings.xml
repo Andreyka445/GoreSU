@@ -121,6 +121,8 @@
   <string name="restart_app">Перезапустить</string>
   <string name="settings_amoled_mode">Режим AMOLED</string>
   <string name="settings_amoled_mode_summary">Включить полностью тёмную тему, оптимизированную для дисплеев AMOLED, чтобы снизить зрительную нагрузку и сэкономить заряд аккумулятора.</string>
+  <string name="settings_liquid_glass_mode">Режим Liquid Glass</string>
+  <string name="settings_liquid_glass_mode_summary">Включить эффект полупрозрачного стекла для интерфейса.</string>
   <string name="restart_required">Требуется перезапуск</string>
   <string name="restart_app_message">Чтобы изменения вступили в силу, необходимо перезапустить приложение.</string>
   <string name="failed_to_update_sepolicy">Не удалось обновить правила SELinux для %s</string>

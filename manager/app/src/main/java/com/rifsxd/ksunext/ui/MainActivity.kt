@@ -61,6 +61,7 @@ import com.rifsxd.ksunext.ksuApp
 import com.rifsxd.ksunext.ui.screen.BottomBarDestination
 import com.rifsxd.ksunext.ui.screen.FlashIt
 import com.rifsxd.ksunext.ui.theme.KernelSUTheme
+import com.rifsxd.ksunext.ui.theme.LocalLiquidGlassMode
 import com.rifsxd.ksunext.ui.util.*
 import com.rifsxd.ksunext.ui.viewmodel.ModuleViewModel
 import com.rifsxd.ksunext.ui.viewmodel.SuperUserViewModel
@@ -153,6 +154,7 @@ class MainActivity : ComponentActivity() {
     var navigateLoc by mutableStateOf<NavigateLocation?>(null)
     var moduleActionId by mutableStateOf<String?>(null)
     var amoledModeState = mutableStateOf(false)
+    var liquidGlassModeState = mutableStateOf(false)
     private val handler = Handler(Looper.getMainLooper())
 
     val moduleViewModel: ModuleViewModel by viewModels()
@@ -183,6 +185,7 @@ class MainActivity : ComponentActivity() {
         try {
             val prefsInit = getSharedPreferences("settings", MODE_PRIVATE)
             amoledModeState.value = prefsInit.getBoolean("enable_amoled", false)
+            liquidGlassModeState.value = prefsInit.getBoolean("enable_liquid_glass", false)
         } catch (_: Exception) {}
 
         val isManager = Natives.isManager
@@ -197,7 +200,7 @@ class MainActivity : ComponentActivity() {
             handleIntent(intent)
 
         setContent {
-            KernelSUTheme(amoledMode = amoledModeState.value) {
+            KernelSUTheme(amoledMode = amoledModeState.value, liquidGlassMode = liquidGlassModeState.value) {
                 val navController = rememberNavController()
                 val snackBarHostState = remember { SnackbarHostState() }
                 val currentDestination = navController.currentBackStackEntryAsState().value?.destination
@@ -404,6 +407,14 @@ class MainActivity : ComponentActivity() {
         amoledModeState.value = enabled
     }
 
+    fun setLiquidGlassMode(enabled: Boolean) {
+        try {
+            val prefs = getSharedPreferences("settings", MODE_PRIVATE)
+            prefs.edit().putBoolean("enable_liquid_glass", enabled).apply()
+        } catch (_: Exception) {}
+        liquidGlassModeState.value = enabled
+    }
+
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         handleIntent(intent)
@@ -504,11 +515,14 @@ private fun BottomBar(
                 .padding(horizontal = horizontalScreenPadding, vertical = 14.dp),
             contentAlignment = Alignment.Center
         ) {
+            val liquidMode = LocalLiquidGlassMode.current
+            
             Surface(
                 modifier = Modifier.wrapContentWidth(),
                 shape = MaterialTheme.shapes.large,
-                tonalElevation = 3.dp,
-                shadowElevation = 8.dp
+                tonalElevation = if (liquidMode) 0.dp else 3.dp,
+                shadowElevation = if (liquidMode) 4.dp else 8.dp,
+                color = if (liquidMode) MaterialTheme.colorScheme.surface.copy(alpha = 0.4f) else MaterialTheme.colorScheme.surface
             ) {
                 val itemSize = 56.dp
                 val itemSpacing = 4.dp
@@ -560,7 +574,7 @@ private fun BottomBar(
                                     modifier = Modifier
                                         .size(itemSize)
                                         .background(
-                                            color = MaterialTheme.colorScheme.secondaryContainer,
+                                            color = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = if (liquidMode) 0.6f else 1f),
                                             shape = MaterialTheme.shapes.large
                                         )
                                 )

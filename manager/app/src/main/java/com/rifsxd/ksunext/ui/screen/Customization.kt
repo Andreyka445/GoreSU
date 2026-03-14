@@ -10,6 +10,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Contrast
+import androidx.compose.material.icons.filled.Opacity
 import androidx.compose.material.icons.filled.Translate
 import androidx.compose.material.icons.filled.ViewCarousel
 import androidx.compose.material3.*
@@ -299,6 +300,22 @@ fun CustomizationScreen(navigator: DestinationsNavigator) {
                     activity?.setAmoledMode(checked)
                     enableAmoled = checked
                 }
+            }
+
+            var enableLiquidGlass by rememberSaveable {
+                mutableStateOf(
+                    prefs.getBoolean("enable_liquid_glass", false)
+                )
+            }
+            val activity = LocalContext.current as? MainActivity
+            SwitchItem(
+                icon = Icons.Filled.Opacity,
+                title = stringResource(id = R.string.settings_liquid_glass_mode),
+                summary = stringResource(id = R.string.settings_liquid_glass_mode_summary),
+                checked = enableLiquidGlass
+            ) { checked ->
+                activity?.setLiquidGlassMode(checked)
+                enableLiquidGlass = checked
             }
         }
     }
